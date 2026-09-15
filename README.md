@@ -1,10 +1,10 @@
 # El Modena Basketball Rosters
 
-Responsive roster application for the El Modena Vanguard Boys Basketball
+Responsive roster application for the El Modena Vanguards Boys Basketball
 website.
 
 The application is hosted with GitHub Pages and embedded into the main
-ElMoHoops Wix website. Player rosters, coaching staffs, team
+ELMO Hoops Wix website. Player rosters, coaching staffs, team
 information, and the current season are maintained in Google Sheets.
 
 ## Live Sites
@@ -32,7 +32,7 @@ Examples:
 
 ## Architecture
 
-The ElMoHoops website uses three primary services.
+The ELMO Hoops website uses three primary services.
 
 ### Wix
 
@@ -359,7 +359,7 @@ Recommended workflow:
 6.  Commit the tested changes to `main`.
 7.  Allow GitHub Pages to redeploy.
 8.  Verify the production GitHub Pages application.
-9.  Verify the affected roster pages on ElMoHoops.org.
+9.  Verify the affected roster pages on ELMOHoops.org.
 
 For significant stable releases, create a Git tag/release.
 
@@ -413,9 +413,9 @@ Do not share a common GitHub username/password between website managers.
 The outgoing Website Manager should ensure that the incoming Website
 Manager has access to:
 
--   ElMoHoops Wix website
--   ElMoHoops GitHub organization
--   ElMoHoops Google account and roster spreadsheet
+-   ELMO Hoops Wix website
+-   ELMO Hoops GitHub organization
+-   ELMO Hoops Google account and roster spreadsheet
 -   Any other program accounts required to maintain the website
 
 ## Related Applications
