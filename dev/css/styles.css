@@ -1,0 +1,383 @@
+/* =========================================================
+   ElMoHoops Rosters
+   ========================================================= */
+
+:root {
+  --elmo-cardinal: #7a1719;
+  --elmo-cardinal-dark: #551012;
+  --elmo-gold: #d4af37;
+  --elmo-gold-light: #f3df91;
+  --page-bg: #f4f4f2;
+  --card-bg: #fff2cc;
+  --text: #1e1e1e;
+  --muted: #6d6d6d;
+  --line: #e2e2df;
+  --shadow: 0 7px 20px rgba(0, 0, 0, 0.075);
+  --shadow-hover: 0 13px 28px rgba(0, 0, 0, 0.13);
+  --radius: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: #e8c28d url("../dev-assets/court_bg.jpg") repeat;
+  background-size: 300px auto;
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.4;
+}
+
+.roster-app {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 20px 0 40px;
+}
+
+/* =========================================================
+   Loading / Error States
+   ========================================================= */
+
+.loading-state,
+.error-state {
+  min-height: 260px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.loading-state p,
+.error-state p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.basketball-loader {
+  font-size: 42px;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(18deg); }
+}
+
+.error-state h2 {
+  margin: 0;
+  color: var(--elmo-cardinal);
+}
+
+/* =========================================================
+   Header
+   ========================================================= */
+
+.team-header {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 87% -24%, rgba(212, 175, 55, 0.27), transparent 36%),
+    linear-gradient(135deg, var(--elmo-cardinal), #7e351f);
+  color: #fff;
+  border-bottom: 5px solid var(--elmo-gold);
+  border-radius: var(--radius);
+  padding: 30px 30px 27px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.team-header::after {
+  content: "🏀";
+  position: absolute;
+  right: 22px;
+  top: 3px;
+  font-size: 88px;
+  opacity: 0.075;
+  transform: rotate(-12deg);
+  filter: saturate(0.7);
+}
+
+.school-name {
+  margin: 0 0 4px;
+  color: var(--elmo-gold-light);
+  font-size: clamp(13px, 1.7vw, 17px);
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.team-name {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: clamp(30px, 5vw, 47px);
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.season {
+  margin: 9px 0 0;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+/* =========================================================
+   Section Titles
+   ========================================================= */
+
+.section {
+  margin-top: 24px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 14px;
+  color: var(--elmo-cardinal);
+  font-size: clamp(21px, 3vw, 27px);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.section-heading::after {
+  content: "";
+  height: 3px;
+  flex: 1;
+  background: linear-gradient(90deg, var(--elmo-gold), rgba(212, 175, 55, 0.08));
+  border-radius: 999px;
+}
+
+/* =========================================================
+   Coaching Staff
+   ========================================================= */
+
+.coaches {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px 26px;
+  padding: 16px 22px;
+  background: var(--card-bg);
+  border-left: 5px solid var(--elmo-gold);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.coach {
+  min-width: 0;
+}
+
+.coach-name {
+  margin: 0;
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.coach-title {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* =========================================================
+   Player Cards
+   ========================================================= */
+
+.roster-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.player-card {
+  position: relative;
+  min-height: 116px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(122, 23, 25, 0.015), rgba(255, 255, 255, 0) 48%),
+    var(--card-bg);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--elmo-cardinal);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 21px 20px 18px;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.player-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--elmo-gold);
+  box-shadow: var(--shadow-hover);
+}
+
+.jersey-number {
+  position: absolute;
+  right: 16px;
+  top: 14px;
+  display: grid;
+  place-items: center;
+  min-width: 45px;
+  height: 45px;
+  padding: 0 8px;
+  background: var(--elmo-cardinal);
+  color: var(--elmo-gold-light);
+  border: 2px solid var(--elmo-gold);
+  border-radius: 999px;
+  box-shadow: 0 3px 8px rgba(85, 16, 18, 0.16);
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.player-card.has-number .player-name {
+  padding-right: 58px;
+}
+
+.player-name {
+  margin: 6px 0 11px;
+  color: var(--elmo-cardinal-dark);
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.class-badge {
+  display: inline-block;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 4px 9px;
+  font-size: 12.5px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.class-badge.senior {
+  background: #d4af37;
+  color: #551012;
+  border-color: #b99218;
+}
+
+.class-badge.junior {
+  background: #f2d9da;
+  color: #7a1719;
+  border-color: #d9a9ab;
+}
+
+.class-badge.sophomore {
+  background: #f4e7c7;
+  color: #6c4b18;
+  border-color: #ddc488;
+}
+
+.class-badge.freshman {
+  background: #e6e8eb;
+  color: #4b5158;
+  border-color: #c7cbd0;
+}
+
+/* =========================================================
+   Empty State
+   ========================================================= */
+
+.empty-message {
+  margin: 0;
+  padding: 21px;
+  background: #fff;
+  border: 1px dashed #c9c9c5;
+  border-radius: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 850px) {
+  .roster-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .team-header {
+    padding-inline: 22px;
+  }
+}
+
+@media (max-width: 560px) {
+  .roster-app {
+    width: min(100% - 20px, 1180px);
+    padding-top: 10px;
+  }
+
+  .team-header {
+    border-radius: 12px;
+    padding: 24px 16px 22px;
+  }
+
+  .team-header::after {
+    font-size: 66px;
+    right: 3px;
+  }
+
+  .team-name {
+    font-size: clamp(28px, 9vw, 38px);
+  }
+
+  .section {
+    margin-top: 20px;
+  }
+
+  .section-heading {
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .roster-grid {
+    grid-template-columns: 1fr;
+    gap: 11px;
+  }
+
+  .player-card {
+    min-height: 104px;
+    padding: 17px 18px 16px;
+  }
+
+  .player-name {
+    font-size: 19px;
+    margin-top: 5px;
+  }
+
+  .jersey-number {
+    right: 14px;
+    top: 12px;
+    min-width: 42px;
+    height: 42px;
+    font-size: 14px;
+  }
+
+  .coaches {
+    grid-template-columns: 1fr;
+    gap: 13px;
+    padding: 15px 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .basketball-loader,
+  .player-card {
+    animation: none;
+    transition: none;
+  }
+}
