@@ -59,7 +59,7 @@ Repositories:
 
 -   `schedule` - Game and event schedule
 -   `rosters` - Team rosters and coaching staffs
--   `board` - Booster Board directory
+-   `boosters` - Booster Board directory
 
 Each application is hosted using GitHub Pages.
 
@@ -436,11 +436,11 @@ Schedule information is maintained in Google Calendar.
 
 Repository:
 
-https://github.com/elmohoops/board
+https://github.com/elmohoops/boosters
 
 GitHub Pages:
 
-https://elmohoops.github.io/board/
+https://elmohoops.github.io/boosters/
 
 Booster Board information is maintained in Google Sheets.
 
